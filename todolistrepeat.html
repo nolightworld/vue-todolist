@@ -6,32 +6,29 @@
     <title>Document</title>
 </head>
 <body>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.js'></script>
     <div id="app">
-        <div>
-            <input v-model='input' @keyup.enter='put'><button @click='put'>送出</button>
-        </div>
-        <h1 v-model='input'>{{input}}</h1>
+        <input v-model='input'><button @click='inputlist'>送出</button>
+        <h1>{{input}}</h1>
         <div>
             <ul>
-                <li v-for='(item,index) in list'>{{item}}<button @click="gode(index)">刪除</button></li>
+                <li v-for='(item,index) in list'>{{item}}<button @click='deleteinput(index)'>刪除</button></li>
             </ul>
         </div>
     </div>
-    
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.js'></script>
     <script>
         let vm = new Vue({
-            el: '#app',
+            el:'#app',
             data:{
                 list:[],
                 input:''
             },
             methods: {
-                put:function(){
+                inputlist:function(){
                     this.list.push(this.input)
                     this.input=''
                 },
-                gode:function(index){
+                deleteinput:function(index){
                     this.list.splice(index,1)
                 }
             },
